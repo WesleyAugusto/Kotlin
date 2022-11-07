@@ -1,4 +1,4 @@
-package repository
+package br.com.curso.repository
 
 import br.com.curso.model.Cliente
 import io.micronaut.data.annotation.Repository

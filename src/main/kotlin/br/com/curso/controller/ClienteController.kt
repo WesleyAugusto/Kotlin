@@ -5,11 +5,12 @@ import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Post
-import repository.ClienteRepository
+import br.com.curso.repository.ClienteRepository
+import java.util.UUID
 
-@Controller("clientes")
+@Controller("/clientes")
 class ClienteController (
-        private val clienteRepository:ClienteRepository
+        private val clienteRepository: ClienteRepository
         ){
     @Post
     fun create(@Body cliente:Cliente){

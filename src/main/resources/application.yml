@@ -4,20 +4,10 @@ micronaut:
 
 datasources:
   default:
-    url: ${JDBC_URL:'jdbc:h2:mem:default;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE'}
-    username: ${JDBC_USER:sa}
-    password: ${JDBC_PASSWORD:""}
-    driverClassName: ${JDBC_DRIVER:org.h2.Driver}
-
----
-jpa:
-  default:
-    packages-to-scan:
-      - 'br.com.curso.model'
-    properties:
-      hibernate:
-        hm2ddl:
-          auto: update
-          show_sql: true
-          format_sql: true
-
+    url: jdbc:h2:mem:devDb;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: ''
+    schema-generate: CREATE_DROP
+    dialect: H2
+jpa.default.properties.hibernate.hbm2ddl.auto: update
