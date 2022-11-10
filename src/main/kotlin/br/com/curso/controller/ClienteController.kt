@@ -1,40 +1,33 @@
 package br.com.curso.controller
 
 import br.com.curso.model.Cliente
-import br.com.curso.repository.ClienteRepository
+import br.com.curso.service.ClienteService
 import io.micronaut.http.annotation.*
-import java.util.UUID
-import javax.transaction.Transactional
 
 @Controller("/clientes")
-open class ClienteController (
-        private val clienteRepository: ClienteRepository
-        ){
+open class ClienteController(private val clienteService: ClienteService) {
     @Post
-    fun create(@Body cliente:Cliente){
-        clienteRepository.save(cliente)
+    fun create(@Body cliente: Cliente) {
+        clienteService.create(cliente)
     }
+
     @Get
-    fun findAll():List<Cliente>{
-        return clienteRepository.findAll()
+    fun findAll(): List<Cliente> {
+        return clienteService.findAll()
     }
+
     @Get("/{id}")
-    fun findById(@PathVariable id:Long): Cliente{
-        return clienteRepository.findById(id).get()
+    fun findById(@PathVariable id: Long): Cliente {
+        return clienteService.findById(id)
     }
 
     @Delete("/{id}")
-    fun deleteId(@PathVariable id:Long){
-        clienteRepository.deleteById(id)
+    fun deleteId(@PathVariable id: Long) {
+        clienteService.deleteId(id)
     }
 
     @Put("/{id}")
-    @Transactional
-   open fun update(@PathVariable id: Long,@Body cliente:Cliente){
-        val clienteDb = clienteRepository.findById(id).get()
-        clienteDb.name = cliente.name
-        clienteDb.documento = cliente.documento
-        clienteDb.endereco = cliente.endereco
-        clienteRepository.save(clienteDb)
+    open fun update(@PathVariable id: Long, @Body cliente: Cliente) {
+        clienteService.update(id, cliente)
     }
 }

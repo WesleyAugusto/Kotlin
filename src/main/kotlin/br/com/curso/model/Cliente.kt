@@ -1,9 +1,6 @@
 package br.com.curso.model
 
 import io.micronaut.core.annotation.Introspected
-
-import io.micronaut.data.annotation.MappedEntity
-import java.util.UUID
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
