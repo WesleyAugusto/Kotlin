@@ -2,6 +2,8 @@ package br.com.curso.controller
 
 import br.com.curso.model.Cliente
 import br.com.curso.service.ClienteService
+import io.micronaut.data.model.Page
+import io.micronaut.data.model.Pageable
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.*
 
@@ -14,9 +16,10 @@ import io.micronaut.http.annotation.*
         return HttpResponse.created(clienteDB)
     }
 
+    // paginação postman -> ( ?size=1&page=2 )
     @Get
-    fun findAll(): List<Cliente> {
-        return clienteService.findAll()
+    fun findAll(pageable: Pageable): Page<Cliente> {
+        return clienteService.findAll(pageable)
     }
 
     @Get("/{id}")
