@@ -6,10 +6,10 @@ import jakarta.inject.Singleton
 import javax.transaction.Transactional
 
 @Singleton
-class ClienteService(private val clienteRepository: ClienteRepository) {
+open class ClienteService(private val clienteRepository: ClienteRepository) {
 
-    fun create(cliente: Cliente) {
-        clienteRepository.save(cliente)
+    fun create(cliente: Cliente):Cliente {
+       return clienteRepository.save(cliente)
     }
 
     fun findAll(): List<Cliente> {
@@ -25,7 +25,7 @@ class ClienteService(private val clienteRepository: ClienteRepository) {
     }
 
     @Transactional
-    open fun update(id: Long, cliente: Cliente) {
+     open fun update(id: Long, cliente: Cliente) {
         val clienteDb = clienteRepository.findById(id).get()
         clienteDb.name = cliente.name
         clienteDb.documento = cliente.documento
