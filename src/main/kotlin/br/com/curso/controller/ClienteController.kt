@@ -25,8 +25,9 @@ import io.micronaut.http.annotation.*
     }
 
     @Delete("/{id}")
-    fun deleteId(@PathVariable id: Long) {
+    fun deleteId(@PathVariable id: Long):HttpResponse<Unit> {
         clienteService.deleteId(id)
+        return HttpResponse.noContent()
     }
 
     @Put("/{id}")

@@ -1,5 +1,6 @@
 package br.com.curso.service
 
+import br.com.curso.exception.RegistroNaoEncontradoException
 import br.com.curso.model.Cliente
 import br.com.curso.repository.ClienteRepository
 import jakarta.inject.Singleton
@@ -17,7 +18,8 @@ open class ClienteService(private val clienteRepository: ClienteRepository) {
     }
 
     fun findById(id: Long): Cliente {
-        return clienteRepository.findById(id).get()
+        return clienteRepository.findById(id).orElseThrow()
+        RegistroNaoEncontradoException("registro nao encontrado")
     }
 
     fun deleteId(id: Long) {
@@ -26,7 +28,7 @@ open class ClienteService(private val clienteRepository: ClienteRepository) {
 
     @Transactional
      open fun update(id: Long, cliente: Cliente) {
-        val clienteDb = clienteRepository.findById(id).get()
+        val clienteDb:Cliente = findById(id)
         clienteDb.name = cliente.name
         clienteDb.documento = cliente.documento
         clienteDb.endereco = cliente.endereco
