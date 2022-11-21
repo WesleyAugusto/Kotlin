@@ -15,8 +15,14 @@ open class ClienteService(private val clienteRepository: ClienteRepository) {
         return clienteRepository.save(cliente)
     }
 
-    fun findAll(pageable: Pageable): Page<Cliente> {
-        return clienteRepository.findAll(pageable)
+    fun findAll(name: String?, pageable: Pageable): Page<Cliente> {
+        var clientes = if (name == null) {
+             clienteRepository.findAll(pageable)
+        }else{
+            clienteRepository.findByName(name,pageable)
+        }
+        return clientes
+
     }
 
     fun findById(id: Long): Cliente {
