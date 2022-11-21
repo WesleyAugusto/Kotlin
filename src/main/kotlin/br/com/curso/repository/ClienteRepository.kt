@@ -8,5 +8,5 @@ import io.micronaut.data.model.Pageable
 
 @Repository
 interface ClienteRepository:JpaRepository<Cliente, Long> {
-    fun findByName(name:String,pageable: Pageable): Page<Cliente>
+    fun findByNome(nome:String,pageable: Pageable): Page<Cliente>
 }

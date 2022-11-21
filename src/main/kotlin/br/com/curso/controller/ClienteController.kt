@@ -18,8 +18,8 @@ import io.micronaut.http.annotation.*
 
     // paginação postman -> ( ?size=1&page=2 )
     @Get
-    fun findAll( @QueryValue name:String?, pageable: Pageable): Page<Cliente> {
-        return clienteService.findAll(name,pageable)
+    fun findAll( @QueryValue nome:String?, pageable: Pageable): Page<Cliente> {
+        return clienteService.findAll(nome,pageable)
     }
 
     @Get("/{id}")

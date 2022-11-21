@@ -13,7 +13,7 @@ data class Cliente(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long?,
-    var name: String,
+    var nome: String,
     var documento: String,
     var endereco: String
 )

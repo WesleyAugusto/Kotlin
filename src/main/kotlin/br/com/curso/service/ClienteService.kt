@@ -15,11 +15,11 @@ open class ClienteService(private val clienteRepository: ClienteRepository) {
         return clienteRepository.save(cliente)
     }
 
-    fun findAll(name: String?, pageable: Pageable): Page<Cliente> {
-        var clientes = if (name == null) {
+    fun findAll(nome: String?, pageable: Pageable): Page<Cliente> {
+        var clientes = if (nome == null) {
              clienteRepository.findAll(pageable)
         }else{
-            clienteRepository.findByName(name,pageable)
+            clienteRepository.findByNome(nome,pageable)
         }
         return clientes
 
@@ -37,7 +37,7 @@ open class ClienteService(private val clienteRepository: ClienteRepository) {
     @Transactional
     open fun update(id: Long, cliente: Cliente) {
         val clienteDb: Cliente = findById(id)
-        clienteDb.name = cliente.name
+        clienteDb.nome = cliente.nome
         clienteDb.documento = cliente.documento
         clienteDb.endereco = cliente.endereco
         clienteRepository.save(clienteDb)
