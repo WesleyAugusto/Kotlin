@@ -19,7 +19,7 @@ abstract class ClienteRepository(private val entityManager:EntityManager):JpaRep
     fun listarComImplementacao(nome:String?):List<Cliente>{
         var queryString = "select c from Cliente c"
     if (nome != null){
-        queryString += "where nome = :nome"
+        queryString += " where nome = :nome"
     }
         var query = entityManager.createQuery(queryString)
     if (nome != null){
