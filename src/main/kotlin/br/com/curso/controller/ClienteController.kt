@@ -38,7 +38,7 @@ import io.micronaut.http.annotation.*
         clienteService.update(id, cliente)
     }
     @Get("/pesquisar")
-    fun listar():List<Cliente>{
-        return clienteService.listar()
+    fun listar(@QueryValue nome: String?):List<Cliente>{
+        return clienteService.listar(nome)
     }
 }

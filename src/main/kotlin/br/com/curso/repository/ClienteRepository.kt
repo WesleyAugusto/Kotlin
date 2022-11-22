@@ -16,9 +16,15 @@ abstract class ClienteRepository(private val entityManager:EntityManager):JpaRep
     @Query("select c from Cliente c")
     abstract fun listar():List<Cliente>
 @Transactional
-    fun listarComImplementacao():List<Cliente>{
+    fun listarComImplementacao(nome:String?):List<Cliente>{
         var queryString = "select c from Cliente c"
+    if (nome != null){
+        queryString += "where nome = :nome"
+    }
         var query = entityManager.createQuery(queryString)
+    if (nome != null){
+        query.setParameter("nome",nome)
+    }
         var clientes = query.resultList
         return clientes as List<Cliente>
     }
