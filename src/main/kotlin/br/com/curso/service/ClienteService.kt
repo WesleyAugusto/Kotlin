@@ -43,6 +43,6 @@ open class ClienteService(private val clienteRepository: ClienteRepository) {
         clienteRepository.save(clienteDb)
     }
     fun listar():List<Cliente>{
-        return clienteRepository.listar()
+        return clienteRepository.listarComImplementacao()
     }
 }
