@@ -42,4 +42,7 @@ open class ClienteService(private val clienteRepository: ClienteRepository) {
         clienteDb.endereco = cliente.endereco
         clienteRepository.save(clienteDb)
     }
+    fun listar():List<Cliente>{
+        return clienteRepository.listar()
+    }
 }

@@ -37,4 +37,8 @@ import io.micronaut.http.annotation.*
      fun update(@PathVariable id: Long, @Body cliente: Cliente) {
         clienteService.update(id, cliente)
     }
+    @Get("/pesquisar")
+    fun listar():List<Cliente>{
+        return clienteService.listar()
+    }
 }
